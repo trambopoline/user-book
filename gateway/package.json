@@ -1,0 +1,22 @@
+{
+	"name": "my-gateway",
+	"version": "1.0.0",
+	"description": "A simple API gateway",
+	"main": "index.js",
+	"author": "",
+	"license": "ISC",
+	"scripts": {
+		"dev": "nodemon server.js",
+		"start": "node server.js"
+	},
+	"dependencies": {
+		"cors": "^2.8.4",
+		"dotenv": "^5.0.1",
+		"express": "^4.16.3",
+		"http-proxy-middleware": "^0.18.0",
+		"request": "^2.86.0"
+	},
+	"devDependencies": {
+		"nodemon": "^1.17.4"
+	}
+}
