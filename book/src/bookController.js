@@ -15,14 +15,14 @@ module.exports = {
         const find = req.query.find ? JSON.parse(req.query.find) : {};
 
         console.log(find);
-        let limit = Number(req.query.limit) || 20;
+        // let limit = Number(req.query.limit) || 20;
         let sort = req.query.sort || {
             title: -1
         };
         bookModel
             .find(find)
             .sort(sort)
-            .limit(limit)
+            // .limit(limit)
             .exec(function (err, books) {
                 if (err) {
                     return res.status(500).json({

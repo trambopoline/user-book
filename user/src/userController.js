@@ -19,14 +19,14 @@ module.exports = {
 			find.booksCheckedOut = mongoose.Types.ObjectId(find.booksCheckedOut);
 			console.log(find);
 		}
-		let limit = Number(req.query.limit) || 20;
+		// let limit = Number(req.query.limit) || 20;
 		let sort = req.query.sort || {
 			name: -1
 		};
 		userModel
 			.find(find)
 			.sort(sort)
-			.limit(limit)
+			// .limit(limit)
 			.exec(function (err, users) {
 				if (err) {
 					return res.status(500).json({
