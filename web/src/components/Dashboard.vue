@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="hero is-primary">
+		<div class="hero is-primary is-bold">
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">
@@ -63,7 +63,7 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
-import Books from "./Books";
+// import BookDetail from "./BookDetail";
 
 export default {
 	name: "Dashboard",
@@ -78,7 +78,7 @@ export default {
 	created() {
 		console.log(this.$route.params.content);
 		axios
-			.get(`http://localhost:3000/user?${this.$route.params.content}`)
+			.get(`http://192.168.99.100:3000/user?${this.$route.params.content}`)
 			.then(response => {
 				this.users = response.data;
 				for (let user of this.users) {
@@ -86,7 +86,7 @@ export default {
 					if (user.booksCheckedOut === null) return;
 					for (let bookId of user.booksCheckedOut) {
 						axios
-							.get(`http://localhost:3000/book/${bookId}`)
+							.get(`http://192.168.99.100:3000/book/${bookId}`)
 							.then(res => {
 								user.books.push(res.data);
 							});

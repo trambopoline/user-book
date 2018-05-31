@@ -4,7 +4,12 @@ import Vue from 'vue'
 
 import App from './App'
 import router from './router'
+import Buefy from "buefy";
+// Keep the material design import before the buefy css import ( https://github.com/lobo-tuerto/buefy-css-build-problem )
+import "@mdi/font/css/materialdesignicons.min.css";
+import "buefy/lib/buefy.css";
 
+Vue.use(Buefy);
 
 Vue.config.productionTip = false
 

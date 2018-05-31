@@ -5,14 +5,16 @@
   "author": "Devin Dodson <git@devindodson.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "node build/build.js"
+    "dev": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.dev.conf.js",
+    "prod": "webpack-dev-server --host 0.0.0.0 --inline --progress --config build/webpack.prod.conf.js",
+    "start": "node build/build.js && node server.js"
   },
   "dependencies": {
     "@mdi/font": "^2.4.85",
     "axios": "^0.18.0",
     "buefy": "^0.6.5",
     "bulma": "^0.7.1",
+    "express": "^4.16.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
