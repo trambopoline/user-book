@@ -30,5 +30,5 @@ const noColor = '\033[0m';
 const magenta = '\x1b[35m';
 
 const server = app.listen(port, function () {
-	console.log(`\n${magenta}API gateway is listening on http://localhost:${port}\n${noColor}`);
+	console.log(`\n${magenta}API gateway is listening on http://192.168.99.100:${port}\n${noColor}`);
 });
