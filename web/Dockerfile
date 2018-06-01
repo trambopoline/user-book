@@ -1,10 +1,3 @@
-# FROM nginx
-
-# RUN "npm start"
-
-# COPY dist /usr/share/nginx/html
-# COPY nginx.conf /usr/share/nginx/html
-
 FROM node:carbon
 
 # Create app directory
@@ -24,6 +17,5 @@ COPY . .
 
 EXPOSE 8080
 
-# CMD ["npm", "run", "dev"]
 CMD ["npm", "start"]
 
