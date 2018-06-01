@@ -1,6 +1,6 @@
 # web
 
-> Vue.js front-end for the user-book project
+A Vue.js front-end for the user-book project. Includes a teensy Express.js server to serve the whole thing statically.
 
 ## Build Setup
 
@@ -8,14 +8,12 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload on localhost
 npm run dev
 
-# build for production with minification
-npm run build
+# build static site and serve ( with minification )
+npm start
 
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
