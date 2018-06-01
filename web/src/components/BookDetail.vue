@@ -35,6 +35,8 @@
 <script>
 import axios from "axios";
 import Vue from "vue";
+const bookLocation = process.env.BOOK_URL || "http://192.168.99.100:3000/book";
+
 export default {
   name: "BookDetail",
   data() {
@@ -48,7 +50,7 @@ export default {
     saveChanges() {
       // console.log(this.book);
       axios
-        .put(`http://192.168.99.100:3000/book/${this.$route.params.id}`, this.book)
+        .put(`${bookLocation}/${this.$route.params.id}`, this.book)
         .then(response => {
           console.log(response);
           // this.book = response.data;
@@ -68,7 +70,7 @@ export default {
     },
     deleteBook() {
       axios
-        .get(`http://192.168.99.100:3000/book/${this.$route.params.id}`)
+        .get(`${bookLocation}/${this.$route.params.id}`)
         .then(response => {
           this.danger();
         })
@@ -96,28 +98,28 @@ export default {
   computed: {},
   created() {
     axios
-      .get(`http://192.168.99.100:3000/book/${this.$route.params.id}`)
+      .get(`${bookLocation}/${this.$route.params.id}`)
       .then(response => {
         this.book = response.data;
       })
       .catch(e => {
         console.error(e);
       });
-    axios
-      .get(`http://192.168.99.100:3000/book/${this.$route.params.id}`)
-      .then(response => {
-        this.book = response.data;
-        Vue.set(
-          this.book,
-          "published",
-          new Date(response.data.published).toLocaleDateString()
-        );
+    // axios
+    //   .get(`${bookLocation}/${this.$route.params.id}`)
+    //   .then(response => {
+    //     this.book = response.data;
+    //     Vue.set(
+    //       this.book,
+    //       "published",
+    //       new Date(response.data.published).toLocaleDateString()
+    //     );
 
-        // this.book.published = ;
-      })
-      .catch(e => {
-        console.error(e);
-      });
+    //     // this.book.published = ;
+    //   })
+    //   .catch(e => {
+    //     console.error(e);
+    //   });
   }
 };
 </script>

@@ -1,21 +1,21 @@
 const path= require('path');
 const express = require('express');
+const DIST_DIR = path.join(__dirname, "dist");
+const PORT = process.env.PORT || 8080;
+const app = express();
 
-const DIST_DIR = path.join(__dirname, "dist"),
-      PORT = 8080,
-      app = express();
+// Colors are always nice
+const noColor = '\033[0m';
+const magenta = '\x1b[35m';
 
-//Serving the files on the dist folder
 app.use(express.static(DIST_DIR));
 
-//Send index.html when the user access the web
+// Hook it up
 app.get("*", function (req, res) {
     res.sendFile(path.join(DIST_DIR, "index.html"));
 });
 
-const noColor = '\033[0m';
-const magenta = '\x1b[35m';
-
-app.listen(PORT, () => {
-  `\n${magenta}Front-end is listening at http://192.168.99.100:${PORT}\n${noColor}`
+// Serve it
+app.listen(PORT, function(){
+  `\n${magenta}Front-end is listening at http://localhost:${PORT}\n${noColor}`
 });

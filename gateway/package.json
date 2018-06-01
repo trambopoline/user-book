@@ -2,8 +2,8 @@
 	"name": "my-gateway",
 	"version": "1.0.0",
 	"description": "A simple API gateway",
-	"main": "index.js",
-	"author": "",
+	"main": "server.js",
+	"author": "Devin Dodson",
 	"license": "ISC",
 	"scripts": {
 		"dev": "nodemon server.js",

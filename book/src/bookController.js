@@ -14,7 +14,6 @@ module.exports = {
 
         const find = req.query.find ? JSON.parse(req.query.find) : {};
 
-        console.log(find);
         // let limit = Number(req.query.limit) || 20;
         let sort = req.query.sort || {
             title: -1
