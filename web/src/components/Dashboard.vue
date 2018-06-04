@@ -63,8 +63,8 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
-const userLocation = process.env.USER_URL || "http://localhost:3000/user";
-const bookLocation = process.env.BOOK_URL || "http://localhost:3000/book";
+const userLocation = process.env.USER_URL || "http://127.0.0.1:3000/user";
+const bookLocation = process.env.BOOK_URL || "http://127.0.0.1:3000/book";
 
 export default {
 	name: "Dashboard",

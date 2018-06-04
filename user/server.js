@@ -7,18 +7,20 @@ const port = process.env.PORT || 3001;
 const connectString = process.env.DB_CONNECT_STRING;
 
 // Colors are always nice
-const noColor = '\033[0m';
-const azure = '\x1b[36m';
+const noColor = "\033[0m";
+const azure = "\x1b[36m";
 
 // Database Setup
 // =============================================================================
 
-mongoose.connect(connectString, (err) => {
+mongoose.connect(connectString, err => {
 	if (err) {
 		console.log(connectString);
 		throw err;
 	}
-	console.log(`\n${azure}Successfully connected to database using connection string:${noColor}\n\t${connectString}\n`);
+	console.log(
+		`\n${azure}Successfully connected to database using connection string:${noColor}\n\t${connectString}\n`
+	);
 
 	// App setup
 	// =============================================================================
@@ -30,15 +32,17 @@ mongoose.connect(connectString, (err) => {
 	);
 	app.use(bodyParser.json());
 
-	app.use(function (error, request, response, next) {
+	app.use(function(error, request, response, next) {
 		response.status(error.status || 500);
 		response.json({
 			error: error.message
 		});
 	});
 
-	const server = app.listen(port, function () {
-		console.log(`\n${azure}User is listening on http://localhost:${port}\n`);
+	const server = app.listen(port, function() {
+		console.log(
+			`\n${azure}User is listening on http://127.0.0.1:${port}\n`
+		);
 	});
 
 	// API routes
@@ -71,5 +75,4 @@ mongoose.connect(connectString, (err) => {
 	router.delete("/:id", userController.remove);
 
 	app.use("/user", router);
-
 });

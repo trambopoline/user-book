@@ -35,7 +35,7 @@
 <script>
 import axios from "axios";
 import Vue from "vue";
-const bookLocation = process.env.BOOK_URL || "http://localhost:3000/book";
+const bookLocation = process.env.BOOK_URL || "http://127.0.0.1:3000/book";
 
 export default {
 	name: "BookDetail",
