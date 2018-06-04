@@ -43,7 +43,7 @@
 										<strong>Title:</strong> {{book.title}}</p>
 									<p>
 										<strong>Author:</strong> {{book.author}}</p>
-									<router-link @click.native="isModalActive=true" :to="{name: 'Book', params: { id: book._id}}">
+									<router-link @click.native="isModalActive=true" :to="{name: 'Book', params: { id: book._id, modalHandler: () => toggleModal }}">
 										More info
 									</router-link>
 								</li>
@@ -63,8 +63,8 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
-const userLocation = process.env.USER_URL || "http://192.168.99.100:3000/user";
-const bookLocation = process.env.BOOK_URL || "http://192.168.99.100:3000/book";
+const userLocation = process.env.USER_URL || "http://localhost:3000/user";
+const bookLocation = process.env.BOOK_URL || "http://localhost:3000/book";
 
 export default {
 	name: "Dashboard",
@@ -76,6 +76,11 @@ export default {
 			isModalActive: false
 		};
 	},
+	methods: {
+		toggleModal() {
+			console.log("TOGGLE");
+		}
+	},
 	created() {
 		console.log(this.$route.params.content);
 		axios
@@ -86,11 +91,9 @@ export default {
 					Vue.set(user, "books", []);
 					if (user.booksCheckedOut === null) return;
 					for (let bookId of user.booksCheckedOut) {
-						axios
-							.get(`${bookLocation}/${bookId}`)
-							.then(res => {
-								user.books.push(res.data);
-							});
+						axios.get(`${bookLocation}/${bookId}`).then(res => {
+							user.books.push(res.data);
+						});
 					}
 				}
 			})
