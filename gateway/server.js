@@ -32,7 +32,7 @@ router.use(
 app.use(cors());
 app.use(router);
 
-const server = app.listen(port, "0.0.0.0", function() {
+const server = app.listen(port, function() {
 	console.log(
 		`\n${magenta}API gateway is listening on http://127.0.0.1:${port}\n${noColor}`
 	);
