@@ -1,0 +1,26 @@
+# This is the base config file for docker-compose.prod.yml and/or docker-compose.override.yml
+version: '3'
+
+services:
+
+  web:
+    build: ./web
+    environment:
+      - USER_URL=http://0.0.0.0:3000/user
+      - BOOK_URL=http://0.0.0.0:3000/book
+
+  gateway:
+    build: ./gateway
+    environment:
+      - USER_ENDPOINT=http://user:3001
+      - BOOK_ENDPOINT=http://book:3002
+
+  user:
+    build: ./user
+    environment: 
+      - DB_CONNECT_STRING=${USER_DB_CONNECT_STRING}
+
+  book:
+    build: ./book
+    environment: 
+      - DB_CONNECT_STRING=${BOOK_DB_CONNECT_STRING}

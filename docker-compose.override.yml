@@ -1,0 +1,47 @@
+# This is the development config, and will run automatically on 'docker-compose up'
+# To specify a production build, run 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d'
+version: '3'
+
+services:
+
+  web:
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    command: ["npm", "run", "dev"]
+
+  gateway:
+    volumes:
+      - ./gateway:/app
+      - /app/node_modules
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+
+  user:
+    volumes:
+      - ./user/:/app
+      - /app/node_modules
+    ports:
+      - "3001:3001"
+    environment: 
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+
+  book:
+    volumes:
+      - ./book/:/app
+      - /app/node_modules
+    ports:
+      - "3002:3002"
+    environment: 
+      - NODE_ENV=development
+    command: ["npm", "run", "dev"]
+

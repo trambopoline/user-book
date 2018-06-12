@@ -54,7 +54,7 @@
 <script>
 import Vue from "vue";
 import axios from "axios";
-const bookLocation = process.env.BOOK_URL || "http://127.0.0.1:3000/book";
+const bookLocation = process.env.BOOK_URL || "http://0.0.0.0:3000/book";
 
 export default {
 	name: "Books",
@@ -67,7 +67,6 @@ export default {
 		};
 	},
 	created() {
-		console.log(this.$route.params.content);
 		axios
 			.get(`${bookLocation}?${this.$route.params.content}`)
 			.then(response => {

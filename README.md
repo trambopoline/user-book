@@ -55,6 +55,6 @@ docker run -i -e USER_ENDPOINT="$yourUserAddress:3001/user" -e BOOK_ENDPOINT="$y
 docker run -i -e USER_URL="$yourGatewayAddress:3000/user" -e BOOK_URL="$yourGatewayAddress:3000/book" -p 80:8080 -d $username/user-book/web &
 ```
 
-If you are fortunate enough to be running Docker natively, you should be able to just use `http://127.0.0.1` for all the `$your[thing]Address` variables above. If you're running non-natively, then you can sub in the value that you get by running `docker-machine ip`.
+If you are fortunate enough to be running Docker natively, you should be able to just use `http://0.0.0.0` for all the `$your[thing]Address` variables above. If you're running non-natively, then you can sub in the value that you get by running `docker-machine ip`.
 
 You will need to provide your own MongoDB connection string.

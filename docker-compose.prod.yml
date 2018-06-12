@@ -1,0 +1,28 @@
+# This is the production config. Run it with 'docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d'
+version: '3'
+
+services:
+
+  web:
+    ports:
+      - "80:8080"
+    environment:
+      - NODE_ENV=production
+    command: ["npm", "start"]
+
+  gateway:
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - NODE_ENV=production
+    command: ["npm", "start"]
+
+  user:
+    environment: 
+      - NODE_ENV=production
+    command: ["npm", "start"]
+
+  book:
+    environment: 
+      - NODE_ENV=production
+    command: ["npm", "start"]

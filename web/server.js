@@ -17,5 +17,7 @@ app.get("*", function(req, res) {
 
 // Serve it
 app.listen(PORT, function() {
-  `\n${magenta}Front-end is listening at http://127.0.0.1:${PORT}\n${noColor}`;
+  console.log(
+    `\n${magenta}Front-end is listening at http://0.0.0.0:${PORT}\n${noColor}`
+  );
 });
