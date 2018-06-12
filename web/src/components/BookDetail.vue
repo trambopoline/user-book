@@ -1,41 +1,41 @@
 <template>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Book Detail</p>
-      <router-link @click.native="isModalActive=true" :to="{name: 'Books'}">
-        See all books
-      </router-link>
+	<div class="modal-card">
+		<header class="modal-card-head">
+			<p class="modal-card-title">Book Detail</p>
+			<router-link @click.native="isModalActive=true" :to="{name: 'Books'}">
+				See all books
+			</router-link>
 
-    </header>
-    <section class="modal-card-body">
-      <b-field label="Title">
-        <b-input type="text" v-model="book.title">
-        </b-input>
-      </b-field>
-      <b-field label="Author">
-        <b-input type="text" v-model="book.author">
-        </b-input>
-      </b-field>
-      <b-field label="Summary">
-        <b-input type="textarea" v-model="book.summary">
-        </b-input>
-      </b-field>
-      <b-field label="Published">
-        <b-input type="text" v-model="book.published">
-        </b-input>
-      </b-field>
-    </section>
-    <footer class="modal-card-foot spaced-children">
-      <button class="button is-success" @click="saveChanges">Save Changes</button>
-      <button class="button is-danger" @click="deleteBook">Delete</button>
-    </footer>
-  </div>
+		</header>
+		<section class="modal-card-body">
+			<b-field label="Title">
+				<b-input type="text" v-model="book.title">
+				</b-input>
+			</b-field>
+			<b-field label="Author">
+				<b-input type="text" v-model="book.author">
+				</b-input>
+			</b-field>
+			<b-field label="Summary">
+				<b-input type="textarea" v-model="book.summary">
+				</b-input>
+			</b-field>
+			<b-field label="Published">
+				<b-input type="text" v-model="book.published">
+				</b-input>
+			</b-field>
+		</section>
+		<footer class="modal-card-foot spaced-children">
+			<button class="button is-success" @click="saveChanges">Save Changes</button>
+			<button class="button is-danger" @click="deleteBook">Delete</button>
+		</footer>
+	</div>
 </template>
 
 <script>
 import axios from "axios";
 import Vue from "vue";
-const bookLocation = process.env.BOOK_URL || "http://127.0.0.1:3000/book";
+const bookLocation = process.env.BOOK_URL || "http://0.0.0.0:3000/book";
 
 export default {
 	name: "BookDetail",

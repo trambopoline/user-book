@@ -4,8 +4,8 @@ const proxy = require("http-proxy-middleware");
 const app = express();
 const router = express.Router();
 const port = process.env.PORT || 3000;
-const userEndpoint = process.env.USER_ENDPOINT || "http://127.0.0.1:3001";
-const bookEndpoint = process.env.BOOK_ENDPOINT || "http://127.0.0.1:3002";
+const userEndpoint = process.env.USER_ENDPOINT || "http://0.0.0.0:3001";
+const bookEndpoint = process.env.BOOK_ENDPOINT || "http://0.0.0.0:3002";
 
 // Colors are always nice
 const noColor = "\033[0m";
@@ -34,6 +34,6 @@ app.use(router);
 
 const server = app.listen(port, function() {
 	console.log(
-		`\n${magenta}API gateway is listening on http://127.0.0.1:${port}\n${noColor}`
+		`\n${magenta}API gateway is listening on http://0.0.0.0:${port}\n${noColor}`
 	);
 });

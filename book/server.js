@@ -13,66 +13,69 @@ const azure = "\x1b[36m";
 // Database Setup
 // =============================================================================
 
-mongoose.connect(connectString, err => {
-	if (err) {
-		console.log(connectString);
-		throw err;
-	}
-	console.log(
-		`\n${azure}Successfully connected to database using connection string:${noColor}\n\t${connectString}\n`
-	);
-
-	// App setup
-	// =============================================================================
-
-	app.use(
-		bodyParser.urlencoded({
-			extended: false
-		})
-	);
-	app.use(bodyParser.json());
-
-	app.use(function(error, request, response, next) {
-		response.status(error.status || 500);
-		response.json({
-			error: error.message
-		});
-	});
-
-	const server = app.listen(port, function() {
+mongoose.connect(
+	connectString,
+	err => {
+		if (err) {
+			console.log(connectString);
+			throw err;
+		}
 		console.log(
-			`\n${azure}Book is listening on http://127.0.0.1:${port}\n`
+			`\n${azure}Successfully connected to database using connection string:${noColor}\n\t${connectString}\n`
 		);
-	});
 
-	// API routes
-	// =============================================================================
-	const router = express.Router();
+		// App setup
+		// =============================================================================
 
-	/*
+		app.use(
+			bodyParser.urlencoded({
+				extended: false
+			})
+		);
+		app.use(bodyParser.json());
+
+		app.use(function(error, request, response, next) {
+			response.status(error.status || 500);
+			response.json({
+				error: error.message
+			});
+		});
+
+		const server = app.listen(port, function() {
+			console.log(
+				`\n${azure}Book is listening on http://0.0.0.0:${port}\n`
+			);
+		});
+
+		// API routes
+		// =============================================================================
+		const router = express.Router();
+
+		/*
 	 * GET
 	 */
-	router.get("/", bookController.list);
+		router.get("/", bookController.list);
 
-	/*
+		/*
 	 * GET
 	 */
-	router.get("/:id", bookController.show);
+		router.get("/:id", bookController.show);
 
-	/*
+		/*
 	 * POST
 	 */
-	router.post("/", bookController.create);
+		router.post("/", bookController.create);
 
-	/*
+		/*
 	 * PUT
 	 */
-	router.put("/:id", bookController.update);
+		router.put("/:id", bookController.update);
 
-	/*
+		/*
 	 * DELETE
 	 */
-	router.delete("/:id", bookController.remove);
+		router.delete("/:id", bookController.remove);
 
-	app.use("/book", router);
-});
+		app.use("/book", router);
+	}
+);

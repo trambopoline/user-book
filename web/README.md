@@ -8,7 +8,7 @@ A Vue.js front-end for the user-book project. Includes a teensy Express.js serve
 # install dependencies
 npm install
 
-# serve with hot reload on 127.0.0.1
+# serve with hot reload on 0.0.0.0
 npm run dev
 
 # build static site and serve ( with minification )
