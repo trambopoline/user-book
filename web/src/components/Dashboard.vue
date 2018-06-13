@@ -67,39 +67,47 @@ const userLocation = process.env.USER_URL || "http://0.0.0.0:3000/user";
 const bookLocation = process.env.BOOK_URL || "http://0.0.0.0:3000/book";
 
 export default {
-	name: "Dashboard",
-	data() {
-		return {
-			currentPage: 1,
-			perPage: 20,
-			users: [],
-			isModalActive: false
-		};
-	},
-	methods: {
-		toggleModal() {
-			console.log("TOGGLE");
-		}
-	},
-	created() {
-		axios
-			.get(`${userLocation}?${this.$route.params.content}`)
-			.then(response => {
-				this.users = response.data;
-				for (let user of this.users) {
-					Vue.set(user, "books", []);
-					if (user.booksCheckedOut === null) return;
-					for (let bookId of user.booksCheckedOut) {
-						axios.get(`${bookLocation}/${bookId}`).then(res => {
-							user.books.push(res.data);
-						});
-					}
-				}
-			})
-			.catch(e => {
-				console.error(e);
-			});
-	}
+  name: "Dashboard",
+  data() {
+    return {
+      currentPage: 1,
+      perPage: 20,
+      users: [],
+      books: [],
+      isModalActive: false
+    };
+  },
+  methods: {
+    toggleModal() {
+      console.log("TOGGLE");
+    }
+  },
+  created() {
+    axios
+      .get(`${userLocation}?${this.$route.params.content}`)
+      .then(response => {
+        this.users = response.data;
+        axios.get(`${bookLocation}`).then(res => {
+          this.books = res.data;
+          for (let user of this.users) {
+            Vue.set(user, "books", []);
+            if (user.booksCheckedOut === null) return;
+            for (let bookId of user.booksCheckedOut) {
+              let matchingBook = this.books.filter(function(elem) {
+                if (elem._id == bookId) return elem;
+              });
+
+              if (matchingBook.length > 0) {
+                user.books.push(matchingBook[0]);
+              }
+            }
+          }
+        });
+      })
+      .catch(e => {
+        console.error(e);
+      });
+  }
 };
 </script>
 
